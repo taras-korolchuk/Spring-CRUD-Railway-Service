@@ -1,0 +1,69 @@
+<header class="mb-15" th:fragment="header" xmlns:th="http://www.w3.org/1999/xhtml"
+        xmlns:sec="http://www.w3.org/1999/xhtml">
+
+  <script>
+    $( document ).ready(function() {
+      $("#upload-train").click(function() {
+        $(this).closest("form").attr("action", "/upload/train");
+      });
+      $("#upload-trip").click(function() {
+        $(this).closest("form").attr("action", "/upload/trip");
+      });
+      $("#upload-route").click(function() {
+        $(this).closest("form").attr("action", "/upload/route");
+      });
+      $("#upload-carriage").click(function() {
+        $(this).closest("form").attr("action", "/upload/carriage");
+      });
+      $("#upload-station").click(function() {
+        $(this).closest("form").attr("action", "/upload/station");
+      });
+    });
+  </script>
+
+  <div>
+    <nav class="nav nav-masthead justify-content-left float-md-end row">
+
+      <div class="left-block col-6">
+
+        <a class="nav-link active" aria-current="page" href="/train">Поїзди</a>
+        <a class="nav-link" href="/trip">Рейси</a>
+        <a class="nav-link" href="/route">Маршрути</a>
+        <a class="nav-link" href="/carriage">Вагони</a>
+        <a class="nav-link" href="/station">Станції</a>
+        <a class="nav-link" href="/query">Запити</a>
+      </div>
+
+      <div class="right-block col-6">
+        <a sec:authorize="!isAuthenticated()" class="nav-link" href="/login">Авторизація</a>
+        <a sec:authorize="!isAuthenticated()" class="nav-link" href="/registration">Реєстрація</a>
+        <a sec:authorize="isAuthenticated()" class="nav-link" href="/logout">Вийти</a>
+        <div class="dropdown">
+          <a sec:authorize="hasRole('ADMIN')" class="nav-link" href="#">Експорт БД</a>
+          <div class="dropdown-content">
+            <a href="/export/train">Поїзди</a>
+            <a href="/export/trip">Рейси</a>
+            <a href="/export/route">Маршрут</a>
+            <a href="/export/carriage">Вагони</a>
+            <a href="/export/station">Станції</a>
+          </div>
+        </div>
+        <div sec:authorize="hasRole('ADMIN')">
+          <form class="file-form"  action="/uploadExcel" method="post" enctype="multipart/form-data">
+            <input type="file" class="form-control" id="file" name="file" />
+            <div class="dropdown">
+              <a id="upload" class="nav-link" href="#">Завантажити</a>
+              <div class="dropdown-content">
+                <button id="upload-train" type="submit">Поїзди</button>
+                <button id="upload-trip" type="submit">Рейси</button>
+                <button id="upload-route" type="submit">Маршрут</button>
+                <button id="upload-carriage" type="submit">Вагони</button>
+                <button id="upload-station" type="submit">Станції</button>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </nav>
+  </div>
+</header>

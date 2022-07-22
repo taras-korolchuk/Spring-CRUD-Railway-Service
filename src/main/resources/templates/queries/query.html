@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+
+<html lang="en" class="h-100" xmlns:th="http://www.w3.org/1999/xhtml">
+
+<head th:insert="blocks/head">
+</head>
+
+<body class="h-100 text-white bg-dark">
+
+<div class="cover-container d-flex w-100 h-100 p-3 mx-auto flex-column">
+    <header th:insert="blocks/header">
+    </header>
+
+    <main class="px-3">
+
+        <div class="form-container">
+
+            <div class="categories p-3">
+                <h2>Запити</h2>
+
+            </div>
+
+            <form style="padding: 2%" action="/query1" method="post">
+                <h4>Знайти вагони поїзда з номером Х</h4>
+                <input type="number" name="trainNumber" placeholder="Введіть Х" class="form-control" required>
+                <button type="submit" class="btn btn-primary">Виконати</button>
+                <br>
+                <div th:if="${query1}" class="alertWarning">
+                    <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span>
+                    <strong>Результат: </strong><text th:text="${query1}"></text>
+                </div>
+            </form>
+
+            <form style="padding: 2%" action="/query2" method="post">
+                <h4>Знайти найбільшу кількість місць в вагонах поїзда з id X</h4>
+                <input type="number" name="trainId" placeholder="Введіть Х" class="form-control" required>
+                <button type="submit" class="btn btn-primary">Виконати</button>
+                <br>
+                <div th:if="${query2}" class="alertWarning">
+                    <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span>
+                    <strong>Результат: </strong><text th:text="${query2}"></text>
+                </div>
+            </form>
+
+            <form style="padding: 2%" action="/query3" method="post">
+                <h4>Знайти поїзди в яких є вагон з кількістю місць не менше Х</h4>
+                <input type="number" min="0" step="1" name="seatNumber" placeholder="Введіть Х" class="form-control" required>
+                <button type="submit" class="btn btn-primary">Виконати</button>
+                <br>
+                <div th:if="${query3}" class="alertWarning">
+                    <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span>
+                    <strong>Результат: </strong><text th:text="${query3}"></text>
+                </div>
+            </form>
+
+            <form style="padding: 2%" action="/query4" method="post">
+                <h4>Знайти маршрути в яких не менше Х станцій</h4>
+                <input type="number" min="0" step="1" name="count" placeholder="Введіть Х" class="form-control" required>
+                <button type="submit" class="btn btn-primary">Виконати</button>
+                <br>
+                <div th:if="${query4}" class="alertWarning">
+                    <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span>
+                    <strong>Результат: </strong><text th:text="${query4}"></text>
+                </div>
+            </form>
+
+            <form style="padding: 2%" action="/query5" method="post">
+                <h4>Знайти маршрути, що мають станцію Х</h4>
+                <input type="text" name="station" placeholder="Введіть Х" class="form-control" required>
+                <button type="submit" class="btn btn-primary">Виконати</button>
+                <br>
+                <div th:if="${query5}" class="alertWarning">
+                    <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span>
+                    <strong>Результат: </strong><text th:text="${query5}"></text>
+                </div>
+            </form>
+
+            <form style="padding: 2%" action="/query6" method="post">
+                <h4>Знайти всі маршрути в яких є тільки такі станції, що і в маршруті з id Х</h4>
+                <input type="number" name="route" placeholder="Введіть Х" class="form-control" required>
+                <button type="submit" class="btn btn-primary">Виконати</button>
+                <br>
+                <div th:if="${query6}" class="alertWarning">
+                    <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span>
+                    <strong>Результат: </strong><text th:text="${query6}"></text>
+                </div>
+            </form>
+
+            <form style="padding: 2%" action="/query8" method="post">
+                <h4>Знайти поїзди, які їздять тільки по тим маршрутам, де і поїзди, що мають вагони з більш як Х місць</h4>
+                <input type="number" name="count" placeholder="Введіть Х" class="form-control" required>
+                <button type="submit" class="btn btn-primary">Виконати</button>
+                <br>
+                <div th:if="${query8}" class="alertWarning">
+                    <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span>
+                    <strong>Результат: </strong><text th:text="${query8}"></text>
+                </div>
+            </form>
+
+            <form style="padding: 2%" action="/query7" method="post">
+                <h4>Знайти всі маршрути, які містять всі станції, що і маршрут з id X</h4>
+                <input type="number" name="route" placeholder="Введіть Х" class="form-control" required>
+                <button type="submit" class="btn btn-primary">Виконати</button>
+                <br>
+                <div th:if="${query7}" class="alertWarning">
+                    <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span>
+                    <strong>Результат: </strong><text th:text="${query7}"></text>
+                </div>
+            </form>
+
+
+        </div>
+        <div>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+        </div>
+
+    </main>
+
+    <footer class="mt-auto text-white-50">
+
+    </footer>
+
+</div>
+
+</body>
+
+</html>

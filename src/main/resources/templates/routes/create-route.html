@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+
+<html lang="en" class="h-100" xmlns:th="http://www.w3.org/1999/xhtml">
+
+<head th:insert="blocks/head">
+</head>
+
+<body class="h-100 text-white bg-dark">
+
+<div class="cover-container d-flex w-100 h-100 p-3 mx-auto flex-column">
+    <header th:insert="blocks/header">
+    </header>
+
+    <main class="px-3">
+
+        <div class="form-container">
+
+            <div th:if="${wrongData}" class="alertError">
+                <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span>
+                <strong>Помилка: </strong><text th:text="${wrongData}"> </text>
+            </div>
+
+            <div class="categories p-3">
+                <h3>Додати новий маршрут</h3>
+            </div>
+
+            <form style="padding: 2%" action="/route/create" method="post">
+                <input type="text" name="name" placeholder="Введіть назву станції" class="form-control" required><br>
+                <button type="submit" class="btn btn-primary">Додати маршрут</button>
+            </form>
+
+            <a href="/route">Я передумав</a>
+
+        </div>
+
+    </main>
+
+    <footer class="mt-auto text-white-50">
+
+    </footer>
+
+</div>
+
+</body>
+
+</html>

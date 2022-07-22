@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+
+<html lang="en" class="h-100" xmlns:th="http://www.w3.org/1999/xhtml" xmlns:sec="http://www.w3.org/1999/xhtml">
+
+<head th:insert="blocks/head">
+</head>
+
+
+<body class="h-100 text-white bg-dark">
+
+<div class="cover-container d-flex w-100 h-100 p-3 mx-auto flex-column">
+
+    <header class="mb-15" th:insert="blocks/header">
+    </header>
+
+    <main class="px-3">
+
+        <div th:if="${deleted}" class="alertWarning">
+            <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span>
+            <strong>Увага: </strong><text th:text="${deleted}"></text>
+        </div>
+
+        <div th:if="${wrongData}" class="alertError">
+            <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span>
+            <strong>Помилка: </strong><text th:text="${wrongData}"></text>
+        </div>
+
+        <div class="сinemas p-3">
+            <h3>Маршрути</h3>
+            <a sec:authorize="hasRole('ADMIN')" href="/route/create">Додати новий</a>
+        </div>
+
+
+        <table class="table table-dark table-bordered table-hover text-center">
+            <thead>
+            <tr class="row ml-3">
+                <th class="col-4"><b>Назва</b></th>
+                <th class="col-4">Дії</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr class="row ml-3" th:each="el : ${routes}">
+                <td class="col-4" th:text="${el.name}"></td>
+                <td class="pupa href-container col-4">
+                    <a sec:authorize="!isAuthenticated()" class="nav-link" href="/login">Треба авторизуватися ¯\_(ツ)_/¯</a>
+                    <a sec:authorize="hasRole('ADMIN')" th:href="@{/route/edit(id=${el.id},
+                                                                                name=${el.name})}">Змінити</a>
+                    <a sec:authorize="isAuthenticated()" th:href="@{/route/details(id=${el.id},
+                                                  name=${el.name})}">Детальніше</a>
+                    <a sec:authorize="hasRole('ADMIN')" th:href="@{/route/delete(id=${el.id},
+                                                                                  name=${el.name})}">Видалити</a>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+
+    </main>
+
+    <footer class="mt-auto text-white-50">
+
+    </footer>
+</div>
+
+</body>
+
+</html>
